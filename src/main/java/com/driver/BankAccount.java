@@ -50,6 +50,13 @@ public class BankAccount {
     }
 
     public double getBalance(){
-        return balance;
+        return  balance;
+    }
+
+    public double getMinBalance(){
+        return minBalance;
+    }
+    public String getName(){
+        return name;
     }
 }
