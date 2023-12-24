@@ -45,18 +45,27 @@ public class BankAccount {
         balance -= amount;
     }
 
-    public void setBalance(double newBalance){
-        balance=-newBalance;
+    public String getName() {
+        return name;
     }
 
-    public double getBalance(){
-        return  balance;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getMinBalance(){
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getMinBalance() {
         return minBalance;
     }
-    public String getName(){
-        return name;
+
+    public void setMinBalance(double minBalance) {
+        this.minBalance = minBalance;
     }
 }

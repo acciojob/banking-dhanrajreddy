@@ -55,12 +55,11 @@ public class CurrentAccount extends BankAccount {
         tradeLicenseId = new String(chars);
     }
 
-    public String getTradeLicenseId(){
+    public String getTradeLicenseId() {
         return tradeLicenseId;
     }
 
-    public static double getDefaultMinBalance() {
-        return DEFAULT_MIN_BALANCE;
+    public void setTradeLicenseId(String tradeLicenseId) {
+        this.tradeLicenseId = tradeLicenseId;
     }
-
 }
