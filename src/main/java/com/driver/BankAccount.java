@@ -2,12 +2,12 @@ package com.driver;
 
 public class BankAccount {
 
-    private String nam;
+    private String name;
     private double balance;
     private double minBalance;
 
     public BankAccount(String name, double balance, double minBalance) {
-        this.nam = name;
+        this.name = name;
         this.balance = balance;
         this.minBalance = minBalance;
     }
@@ -57,6 +57,6 @@ public class BankAccount {
         return minBalance;
     }
     public String getName(){
-        return nam;
+        return name;
     }
 }
