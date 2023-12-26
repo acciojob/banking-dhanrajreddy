@@ -24,18 +24,18 @@ public class BankAccount {
         String number="";
         int temp=sum;
         int digitSum=0;
+        int i=0;
             while(sum>0) {
-                for (int i = 0; i < digits; i++) {
-                    if (sum > i) {
-                        sum = sum - i;
-                        number += i;
-                        digitSum += i;
-                    } else {
-                        number += sum;
-                        digitSum += sum;
-                        sum = 0;
-                    }
+                if (sum >= i && i >= 9) {
+                    sum = sum - i;
+                    number += i;
+                    System.out.println(number);
+                    digitSum += i;
                 }
+                else if(sum> 0 && i==10)
+                    i=0;
+                else
+                     i++;
             }
             while(number.length()!=digits){
                 number+=0;
