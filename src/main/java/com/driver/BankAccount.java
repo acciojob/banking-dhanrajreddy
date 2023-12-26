@@ -1,5 +1,7 @@
 package com.driver;
 
+import java.net.StandardSocketOptions;
+
 public class BankAccount {
 
     private String name;
@@ -20,24 +22,28 @@ public class BankAccount {
 
         // Implement your logic to generate the account number here
         String number="";
+        int temp=sum;
         int digitSum=0;
-        while(sum>0){
-            if(sum>9){
-                sum=sum-9;
-                number+=9;
-                digitSum+=9;
-            }else {
-                number+=sum;
-                digitSum+=sum;
-                sum=0;
+            while(sum>0) {
+                for (int i = 0; i < digits; i++) {
+                    if (sum > i) {
+                        sum = sum - i;
+                        number += i;
+                        digitSum += i;
+                    } else {
+                        number += sum;
+                        digitSum += sum;
+                        sum = 0;
+                    }
+                }
             }
-        }
-        while(number.length()!=digits){
-            number+=0;
-        }
+            while(number.length()!=digits){
+                number+=0;
+            }
+        if (temp!=digitSum)
+            throw new Exception("Account number not generated");
         return number;
     }
-
     public void deposit(double amount) {
         balance += amount;
     }
