@@ -6,6 +6,7 @@ public class BankAccount {
     private double balance;
     private double minBalance;
 
+    BankAccount(){}
     public BankAccount(String name, double balance, double minBalance) {
         this.name = name;
         this.balance = balance;
@@ -18,20 +19,23 @@ public class BankAccount {
         // If it is not possible, throw "Account Number can not be generated" exception
 
         // Implement your logic to generate the account number here
-        StringBuilder accountNumber = new StringBuilder();
-        int currentSum = 0;
-
-        for (int i = 0; i < digits; i++) {
-            int digit = (int) (Math.random() * 10);
-            accountNumber.append(digit);
-            currentSum += digit;
+        String number="";
+        int digitSum=0;
+        while(sum>0){
+            if(sum>9){
+                sum=sum-9;
+                number+=9;
+                digitSum+=9;
+            }else {
+                number+=sum;
+                digitSum+=sum;
+                sum=0;
+            }
         }
-
-        if (currentSum != sum) {
-            throw new Exception("Account Number can not be generated");
+        while(number.length()!=digits){
+            number+=0;
         }
-
-        return accountNumber.toString();
+        return number;
     }
 
     public void deposit(double amount) {
