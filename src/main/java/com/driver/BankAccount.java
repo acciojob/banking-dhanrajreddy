@@ -29,7 +29,7 @@ public class BankAccount {
                 if (sum >= i && i >= 9) {
                     sum = sum - i;
                     number += i;
-                    System.out.println(number);
+                    //System.out.println(number);
                     digitSum += i;
                 }
                 else if(sum> 0 && i==10)
