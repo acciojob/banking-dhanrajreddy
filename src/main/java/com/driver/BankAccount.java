@@ -26,6 +26,8 @@ public class BankAccount {
         int digitSum=0;
         int i=0;
             while(sum>0) {
+                if(number.length()>digits)
+                    throw new Exception("Account number not generated");
                 if (sum >= i && i >= 9) {
                     sum = sum - i;
                     number += i;
