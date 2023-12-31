@@ -18,28 +18,39 @@ public class BankAccount {
         // Implement your logic to generate the account number here
         String number="";
         int temp=sum;
+        int num=0;
         int countSum=0;
-        int digitSum=9*digits;
-
-        while(temp>0){
-            if(sum>digitSum ||digits<number.length()-1)
-                throw new Exception("Account Number can not be generated");
-
-            else if(countSum<sum||number.length()-1!=digits){
-                number+="9";
-                countSum+=9;
-                temp-=9;
+        int maxSum=9*digits;
+        if(sum>maxSum || sum<0)
+            throw new Exception("Account Number can not be generated");
+        if(digits==1)
+            return number+=sum;
+        if(sum==0){
+            for(int i=0;i<digits;i++)
+                number+=0;
+        }else{
+            if(sum%digits==0){
+                num=sum/digits;
+                for(int i=0;i<digits;i++)
+                    number+=num;
+            }else{
+                num=sum%digits;
+                int num1=0;
+                num1=sum-num;
+                int add=0;
+                add=num1/digits;
+                for(int i=0;i<digits;i++){
+                    if(num>0) {
+                        number += (add + 1);
+                        num--;
+                    }else{
+                        number+=add;
+                    }
+                }
             }
 
         }
-        while(digits!=number.length()-1){
-            number+=0;
-        }
-        if(sum!=countSum)
-            throw new Exception("Account Number can not be generated");
         return number;
-
-
     }
     public void deposit(double amount) {
         balance += amount;
