@@ -50,6 +50,7 @@ public class CurrentAccount extends BankAccount {
 
         if (!isValid) {
             throw new Exception("Valid License can not be generated");
+
         }
 
         tradeLicenseId = new String(chars);
