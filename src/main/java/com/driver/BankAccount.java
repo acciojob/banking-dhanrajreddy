@@ -39,17 +39,46 @@ public class BankAccount {
     }
 
     public String generateAccountNumber(int digits, int sum) throws Exception{
-        //Each digit of an account number can lie between 0 and 9 (both inclusive)
-        //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
-        //If it is not possible, throw "Account Number can not be generated" exception
-        int currSum=0,pass=digits;
-        while(digits>0){
-            int lastDigit=(digits%10);
-            currSum+=lastDigit;
-            digits=digits/10;
+        // Each digit of an account number can lie between 0 and 9 (both inclusive)
+        // Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
+        // If it is not possible, throw "Account Number can not be generated" exception
+
+        // Implement your logic to generate the account number here
+        String number="";
+        int temp=sum;
+        int num=0;
+        int countSum=0;
+        int maxSum=9*digits;
+        if(sum>maxSum || sum<0)
+            throw new Exception("Account Number can not be generated");
+        if(digits==1)
+            return number+=sum;
+        if(sum==0){
+            for(int i=0;i<digits;i++)
+                number+=0;
+        }else{
+            if(sum%digits==0){
+                num=sum/digits;
+                for(int i=0;i<digits;i++)
+                    number+=num;
+            }else{
+                num=sum%digits;
+                int num1=0;
+                num1=sum-num;
+                int add=0;
+                add=num1/digits;
+                for(int i=0;i<digits;i++){
+                    if(num>0) {
+                        number += (add + 1);
+                        num--;
+                    }else{
+                        number+=add;
+                    }
+                }
+            }
+
         }
-        if(currSum==sum)  return ""+pass;
-        throw new Exception("Account Number can not be generated");
+        return number;
     }
 
     public void deposit(double amount) {
