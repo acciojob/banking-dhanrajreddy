@@ -34,4 +34,12 @@ public class SavingsAccount extends BankAccount{
         double CI = principal *( Math.pow(1+rateOfInterest/100,times*years)) - principal;
         return CI;
     }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public double getMaxWithdrawalLimit() {
+        return maxWithdrawalLimit;
+    }
 }
