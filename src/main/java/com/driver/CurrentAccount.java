@@ -30,4 +30,12 @@ public class CurrentAccount extends BankAccount{
         }
         if(maxFreq>=((n/2)+1))   throw new Exception("Valid License can not be generated");
     }
+
+    public String getTradeLicenseId() {
+        return tradeLicenseId;
+    }
+
+    public void setTradeLicenseId(String tradeLicenseId) {
+        this.tradeLicenseId = tradeLicenseId;
+    }
 }
