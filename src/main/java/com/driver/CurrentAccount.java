@@ -25,11 +25,10 @@ public class CurrentAccount extends BankAccount{
 
         if(!isNumberValid(tradeLicenseId)){
             String rearrangedId = arrangeString(tradeLicenseId);
-            if(rearrangedId ==tradeLicenseId){
+            if(rearrangedId == ""){
                 throw new Exception("Valid License can not be generated");
             }else{
                 this.tradeLicenseId = rearrangedId;
-                System.out.println("tradeLicenseId"+tradeLicenseId);
             }
         }
     }
@@ -46,18 +45,85 @@ public class CurrentAccount extends BankAccount{
 
 
     public String arrangeString(String s){
-        char[] chars = s.toCharArray();
-        for (int i = 1; i < chars.length; i++) {
-            if (chars[i] == chars[i - 1]) {
-                for (int j = i + 1; j < chars.length; j++) {
-                    if (chars[j] != chars[i - 1]) {
-                        char temp = chars[j];
-                        chars[j] = chars[i];
-                        chars[i] = temp;
-                    }
-                }
+        int n = s.length();
+
+        int[]count = new int[26];
+        for(int i=0;i<26;i++){
+            count[i] = 0;
+        }
+        for(char ch: s.toCharArray()){
+            count[(int)ch - (int)'A']++;
+        }
+
+        char ch_max = getCountChar(count);
+        int maxCount = count[(int)ch_max - (int)'A'];
+
+        if(maxCount > (n+1)/2){
+            return "";
+        }
+
+//        int index = 0;
+//        char[]res = new char[n];
+//        for(index=0;index<n;index=index+2){
+//            if(count[maxCount]>0){
+//                res[index] = ch_max;
+//                count[maxCount]--;
+//            }else{
+//                break;
+//            }
+//        }
+//
+//        for(int i=0;i<26;i++){
+//            char ch = (char)('A' + i);
+//            while(count[i] > 0){
+//                if(index>n){
+//                    index = 1;
+//                }
+//                res[index] = ch;
+//                index = index + 2;
+//                count[i]--;
+//            }
+//        }
+//        String ans = valueOf(res);
+//        return ans;
+
+        String res = "";
+        for (int i = 0; i < n; i++) {
+            res += ' ';
+        }
+
+        int ind = 0;
+        while (maxCount > 0) {
+            res = res.substring(0, ind) + ch_max
+                    + res.substring(ind + 1);
+            ind = ind + 2;
+            maxCount--;
+        }
+        count[(int) ch_max - (int) 'A'] = 0;
+        for (int i = 0; i < 26; i++) {
+            while (count[i] > 0) {
+                ind = (ind >= n) ? 1 : ind;
+                res = res.substring(0, ind)
+                        + (char) ((int) 'A' + i)
+                        + res.substring(ind + 1);
+                ind += 2;
+                count[i]--;
             }
         }
-        return  new String(chars);
+        return res;
     }
+
+
+    public char getCountChar(int[] count){
+        int max = 0;
+        char ch = 0;
+        for(int i=0;i<26;i++){
+            if(count[i]>max){
+                max = count[i];
+                ch = (char)((int)'A' + i);
+            }
+        }
+        return ch;
+    }
+
 }
